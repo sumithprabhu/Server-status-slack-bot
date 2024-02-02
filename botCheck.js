@@ -35,13 +35,13 @@ async function sendQuestionAndMonitorResponse() {
             && latestMessage.messageContent && latestMessage.fromDID === fromAdd) {
             // All conditions met, do not send to Slack
             await axios.post(slackWebhookUrl, {
-                text: `Bot is working great , Latest question asked : ${question} || Answer : ${latestMessage.messageContent}`
+                text: `Bot is working great 🙌\n\nQuestion asked : ${question}\nAnswer : ${latestMessage.messageContent} \n\nYou can check live bot on https://app.push.org/chat/0x71Ffa5771E8019787190D098586EFe02026a3c8C`
             });
             console.log(`Bot is working great , Latest question asked : ${question} || Answer : ${latestMessage.messageContent}`);
         } else {
             // Conditions not met, send notification to Slack
             await axios.post(slackWebhookUrl, {
-                text: `Alert : Bot has stopped working.`
+                text: `Alert 🚨: Bot has stopped working. <@U05Q7NXE74P> `
             });
             console.log("Notification sent to Slack.");
         }
@@ -50,7 +50,7 @@ async function sendQuestionAndMonitorResponse() {
 
 function callHourly() {
     sendQuestionAndMonitorResponse(); // Call it immediately if needed at start
-    setInterval(sendQuestionAndMonitorResponse, 3600000); // 3600000 milliseconds = 1 hour
+    setInterval(sendQuestionAndMonitorResponse, 21600000); // 3600000 milliseconds = 1 hour
 }
 
 callHourly();
